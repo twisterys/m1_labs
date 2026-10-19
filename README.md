@@ -1,6 +1,6 @@
 # M1 Labs — Travaux Pratiques
 
-Ce dépôt contient les travaux pratiques de Master 1 / Doctorat en Intelligence Artificielle et Vision-Langage.
+Ce dépôt contient les travaux pratiques Doctorat en Intelligence Artificielle et Vision-Langage.
 
 ## 📂 Liste des TPs disponibles
 
