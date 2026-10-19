@@ -1,0 +1,25 @@
+# Virtual environments
+.venv/
+.env/
+env/
+venv/
+ENV/
+*.env
+
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AI Assistant & IDE configs
+.antigravity/
+.gemini/
+.agents/
+*.agy
