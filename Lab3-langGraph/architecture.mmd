@@ -1,0 +1,39 @@
+%% Architecture Diagram for LangGraph University Assistant
+graph TD
+    START([__start__]) --> Classifier[Node: classifier]
+
+    %% Classifier conditional routing
+    Classifier -->|category == COURSES| Courses[Node: courses_agent]
+    Classifier -->|category == PROGRAMMING| Programming[Node: programming_agent]
+    Classifier -->|category == MATHEMATICS| Math[Node: mathematics_agent]
+    Classifier -->|category == ADMINISTRATION| Admin[Node: administration_agent]
+    Classifier -->|category == GENERAL| General[Node: general_agent]
+    Classifier -->|category == EMPTY / ERROR| Fallback[Node: fallback]
+
+    %% Tool execution branch
+    Courses -->|has tool_calls| Tools[Node: tools / ToolNode]
+    Programming -->|has tool_calls| Tools
+    Math -->|has tool_calls| Tools
+    Admin -->|has tool_calls| Tools
+    General -->|has tool_calls| Tools
+
+    %% Tool returns to specific agent
+    Tools -->|return to caller| Courses
+    Tools -->|return to caller| Programming
+    Tools -->|return to caller| Math
+    Tools -->|return to caller| Admin
+    Tools -->|return to caller| General
+
+    %% Completion
+    Courses -->|no tool_calls| END([__end__])
+    Programming -->|no tool_calls| END
+    Math -->|no tool_calls| END
+    Admin -->|no tool_calls| END
+    General -->|no tool_calls| END
+    Fallback --> END
+
+    %% Memory Checkpointer annotation
+    subgraph Persistence [State & Memory Checkpoint]
+        Memory[(MemorySaver: thread_id)]
+    end
+
